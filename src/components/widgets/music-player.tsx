@@ -8,6 +8,7 @@ import {
   Pause,
   SkipBack,
   SkipForward,
+  Volume1,
   Volume2,
   VolumeX,
   Shuffle,
@@ -60,6 +61,30 @@ export default function MusicPlayer() {
   const handleVolumeChange = (value: number[]) => {
     setVolume(value)
     setIsMuted(value[0] === 0)
+  }
+
+  const getVolumeLevel = () => {
+    const vol = isMuted ? 0 : volume[0]
+    if (vol === 0) return 0
+    if (vol <= 33) return 1
+    if (vol <= 66) return 2
+    return 3
+  }
+
+  const getVolumeIcon = () => {
+    const level = getVolumeLevel()
+    switch (level) {
+      case 0:
+        return <VolumeX className="w-4 h-4 text-muted-foreground" />
+      case 1:
+        return <Volume1 className="w-4 h-4 text-muted-foreground" />
+      case 2:
+        return <Volume2 className="w-4 h-4 text-muted-foreground" />
+      case 3:
+        return <Volume2 className="w-4 h-4 text-muted-foreground" />
+      default:
+        return <Volume2 className="w-4 h-4 text-muted-foreground" />
+    }
   }
 
   const toggleMute = () => {
@@ -173,13 +198,9 @@ export default function MusicPlayer() {
               <MonitorSpeaker className="w-4 h-4 text-muted-foreground" />
             </Button>
 
-            <div className="flex items-center gap-2 min-w-0 w-32">
+            <div className="flex items-center gap-2 min-w-0 w-48">
               <Button size="icon" variant="ghost" className="w-8 h-8 flex-shrink-0 btn-smooth" onClick={toggleMute}>
-                {isMuted || volume[0] === 0 ? (
-                  <VolumeX className="w-4 h-4 text-muted-foreground" />
-                ) : (
-                  <Volume2 className="w-4 h-4 text-muted-foreground" />
-                )}
+                {getVolumeIcon()}
               </Button>
               <div className="flex-1">
                 <Slider
@@ -189,6 +210,20 @@ export default function MusicPlayer() {
                   onValueChange={handleVolumeChange}
                   className="w-full"
                 />
+              </div>
+              <div className="flex items-center gap-1 min-w-0">
+                <div className="flex items-center gap-0.5">
+                  {[1, 2, 3].map((level) => (
+                    <div
+                      key={level}
+                      className={`w-1 h-3 rounded-full transition-colors duration-200 ${getVolumeLevel() >= level ? "bg-primary" : "bg-muted-foreground/30"
+                        }`}
+                    />
+                  ))}
+                </div>
+                <span className="text-xs text-muted-foreground ml-1">
+                  {isMuted ? "0%" : `${volume[0]}%`}
+                </span>
               </div>
             </div>
           </div>
