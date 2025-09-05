@@ -77,7 +77,7 @@ const featuredSections: Section[] = [
     },
 ]
 
-const containerVariants = {
+const containerVariants: import("framer-motion").Variants = {
     hidden: { opacity: 0 },
     show: {
         opacity: 1,
@@ -85,9 +85,9 @@ const containerVariants = {
     },
 }
 
-const itemVariants = {
+const itemVariants: import("framer-motion").Variants = {
     hidden: { opacity: 0, y: 8 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.22, ease: "easeOut" } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.22, ease: [0.16, 1, 0.3, 1] } },
 }
 
 export function MainContent() {
@@ -144,7 +144,7 @@ export function MainContent() {
                                         <div className="pr-4">
                                             <Button
                                                 size="icon"
-                                                className={`w-10 h-10 rounded-full spotify-gradient transition-opacity duration-150 ${hoveredItem === item.id ? "opacity-100" : "opacity-0"}`}
+                                                className={`w-10 h-10 rounded-full bg-white text-black hover:bg-white/90 hover:text-black transition-opacity duration-150 ${hoveredItem === item.id ? "opacity-100" : "opacity-0"}`}
                                                 onClick={() => handlePlayPause(item.id)}
                                             >
                                                 {playingItem === item.id ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
@@ -183,7 +183,7 @@ export function MainContent() {
                                                     />
                                                     <Button
                                                         size="icon"
-                                                        className={`absolute bottom-2 right-2 w-10 h-10 rounded-full spotify-gradient transition-opacity duration-150 ${hoveredItem === item.id ? "opacity-100" : "opacity-0"}`}
+                                                        className={`absolute bottom-2 right-2 w-10 h-10 rounded-full bg-white text-black hover:bg-white/90 hover:text-black transition-opacity duration-150 ${hoveredItem === item.id ? "opacity-100" : "opacity-0"}`}
                                                         onClick={() => handlePlayPause(item.id)}
                                                     >
                                                         {playingItem === item.id ? (

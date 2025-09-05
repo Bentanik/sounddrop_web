@@ -80,7 +80,7 @@ export default function MusicPlayer() {
 
   return (
     <>
-      <div className="fixed bottom-0 left-0 right-0 bg-player border-t border-border backdrop-blur-md z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-sidebar border-t border-sidebar-border backdrop-blur-md z-50">
 
         <div className="flex items-center justify-between px-4 py-3 gap-4">
           {/* Track Info */}
@@ -100,7 +100,7 @@ export default function MusicPlayer() {
               className="w-8 h-8 flex-shrink-0 btn-smooth"
               onClick={() => setIsLiked(!isLiked)}
             >
-              <Heart className={`w-4 h-4 ${isLiked ? "fill-primary text-primary" : "text-muted-foreground"}`} />
+              <Heart className={`w-4 h-4 ${isLiked ? "fill-white text-white" : "text-muted-foreground"}`} />
             </Button>
             <Button size="icon" variant="ghost" className="w-8 h-8 flex-shrink-0 btn-smooth">
               <PictureInPicture2 className="w-4 h-4 text-muted-foreground" />
@@ -117,14 +117,14 @@ export default function MusicPlayer() {
                 className="w-8 h-8 btn-smooth"
                 onClick={() => setIsShuffled(!isShuffled)}
               >
-                <Shuffle className={`w-4 h-4 ${isShuffled ? "text-primary" : "text-muted-foreground"}`} />
+                <Shuffle className={`w-4 h-4 ${isShuffled ? "text-white" : "text-muted-foreground"}`} />
               </Button>
 
               <Button size="icon" variant="ghost" className="w-8 h-8 btn-smooth">
                 <SkipBack className="w-4 h-4 text-foreground" />
               </Button>
 
-              <Button size="icon" className="w-10 h-10 rounded-full spotify-gradient shadow-lg" onClick={togglePlay}>
+              <Button size="icon" className="w-10 h-10 rounded-full bg-white text-black hover:bg-white/90" onClick={togglePlay}>
                 {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-0.5" />}
               </Button>
 
@@ -133,7 +133,7 @@ export default function MusicPlayer() {
               </Button>
 
               <Button size="icon" variant="ghost" className="w-8 h-8 btn-smooth" onClick={toggleRepeat}>
-                <Repeat className={`w-4 h-4 ${repeatMode !== "off" ? "text-primary" : "text-muted-foreground"}`} />
+                <Repeat className={`w-4 h-4 ${repeatMode !== "off" ? "text-white" : "text-muted-foreground"}`} />
                 {repeatMode === "one" && <span className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full" />}
               </Button>
             </div>

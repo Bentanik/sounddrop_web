@@ -224,6 +224,11 @@
 
 /* Enhanced visual styling */
 @layer utilities {
+  .btn-smooth {
+    transition: background-color 150ms ease, color 150ms ease,
+      border-color 150ms ease, transform 150ms ease, opacity 150ms ease;
+    will-change: transform, opacity;
+  }
   /* Accent gradient used for play buttons or highlights */
   .spotify-gradient {
     background-image: linear-gradient(

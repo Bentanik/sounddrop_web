@@ -6,9 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Music, ListMusic, User, Settings, Crown } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { FaDownload, FaHeart, FaHouse, FaPlus } from "react-icons/fa6"
-import { FaSearch } from "react-icons/fa"
-import { LuLibraryBig } from "react-icons/lu";
+import { Download as DownloadIcon, Heart as HeartIcon, Home as HomeIcon, Plus as PlusIcon, Search as SearchIcon, LibraryBig as LibraryBigIcon } from "lucide-react"
 
 
 interface PlaylistItem {
@@ -20,9 +18,9 @@ interface PlaylistItem {
 }
 
 const libraryItems = [
-    { icon: FaPlus, label: "Tạo playlist" },
-    { icon: FaHeart, label: "Bài hát yêu thích" },
-    { icon: FaDownload, label: "Nhạc đã tải" },
+    { icon: PlusIcon, label: "Tạo playlist" },
+    { icon: HeartIcon, label: "Bài hát yêu thích" },
+    { icon: DownloadIcon, label: "Nhạc đã tải" },
 ]
 
 const defaultPlaylists: PlaylistItem[] = [
@@ -45,9 +43,9 @@ export default function Sidebar() {
     const pathname = usePathname()
 
     const navigationItems = [
-        { icon: FaHouse, label: "Trang chủ", href: "/" },
-        { icon: FaSearch, label: "Tìm kiếm", href: "/search" },
-        { icon: LuLibraryBig, label: "Thư viện", href: "/library" },
+        { icon: HomeIcon, label: "Trang chủ", href: "/" },
+        { icon: SearchIcon, label: "Tìm kiếm", href: "/search" },
+        { icon: LibraryBigIcon, label: "Thư viện", href: "/library" },
     ]
 
     return (
@@ -63,7 +61,7 @@ export default function Sidebar() {
             </div>
 
             <div className="p-4 border-b border-sidebar-border flex-shrink-0">
-                <nav className="space-y-1">
+                <nav className="space-y-1.5">
                     {navigationItems.map((item) => (
                         <Link key={item.label} href={item.href}>
                             <Button
@@ -83,7 +81,7 @@ export default function Sidebar() {
 
             {/* Library Section - Fixed */}
             <div className="px-4 py-4 border-b border-sidebar-border flex-shrink-0">
-                <div className="space-y-1">
+                <div className="space-y-1.5">
                     {libraryItems.map((item) => (
                         <Link key={item.label} href="#">
                             <Button
@@ -108,7 +106,7 @@ export default function Sidebar() {
                 </div>
 
                 <ScrollArea className="h-full custom-scrollbar">
-                    <div className="space-y-1 pb-12">
+                    <div className="space-y-1.5 pb-12">
                         {playlists.map((playlist) => (
                             <Link key={playlist.id} href={`/${playlist.type}/${playlist.id}`}>
                                 <Button
