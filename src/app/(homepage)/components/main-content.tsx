@@ -200,13 +200,13 @@ export function MainContent() {
                                                 </div>
 
                                                 <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
-                                                    <Button size="icon" variant="ghost" className="w-8 h-8 text-muted-foreground hover:text-foreground">
+                                                    <Button size="icon" variant="ghost" className="w-8 h-8 text-muted-foreground hover:text-foreground hover:bg-white/5">
                                                         <Heart className="w-4 h-4" />
                                                     </Button>
-                                                    <Button size="icon" variant="ghost" className="w-8 h-8 text-muted-foreground hover:text-foreground">
+                                                    <Button size="icon" variant="ghost" className="w-8 h-8 text-muted-foreground hover:text-foreground hover:bg-white/5">
                                                         <Plus className="w-4 h-4" />
                                                     </Button>
-                                                    <Button size="icon" variant="ghost" className="w-8 h-8 text-muted-foreground hover:text-foreground">
+                                                    <Button size="icon" variant="ghost" className="w-8 h-8 text-muted-foreground hover:text-foreground hover:bg-white/5">
                                                         <MoreHorizontal className="w-4 h-4" />
                                                     </Button>
                                                 </div>
