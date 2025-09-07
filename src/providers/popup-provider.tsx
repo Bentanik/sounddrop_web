@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { AuthPopup } from "@/components/widgets";
-import GenericPopup from "@/components/ui/generic-popup";
 
 export default function PopupProvider() {
     const [isMounted, setIsMounted] = useState(false);
@@ -18,7 +17,6 @@ export default function PopupProvider() {
     return (
         <>
             <AuthPopup />
-            <GenericPopup />
         </>
     );
 }

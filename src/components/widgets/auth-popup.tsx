@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Popup from "@/components/ui/popup"
-import { useAuthPopup, useUser } from "@/hooks/use-popup-store"
+import { useAuthPopup } from "@/hooks/use-popup-store"
 import { Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react"
 
 interface AuthPopupProps {
@@ -14,7 +14,6 @@ interface AuthPopupProps {
 
 export default function AuthPopup({ onSuccess }: AuthPopupProps) {
     const { isAuthPopupOpen, closeAuthPopup } = useAuthPopup()
-    const { setUser } = useUser()
     const [showPassword, setShowPassword] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
@@ -38,7 +37,6 @@ export default function AuthPopup({ onSuccess }: AuthPopupProps) {
 
             console.log("Login:", { email: formData.email, password: formData.password })
             const user = { email: formData.email, name: "User", isAuthenticated: true }
-            setUser(user)
             onSuccess?.(user)
 
             closeAuthPopup()
