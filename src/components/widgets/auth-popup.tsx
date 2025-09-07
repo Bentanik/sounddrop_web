@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { InputAuth } from "@/components/ui/input-auth"
 import Popup from "@/components/ui/popup"
 import { useAuthPopup } from "@/hooks/use-popup-store"
 import { Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react"
@@ -89,13 +89,13 @@ export default function AuthPopup({ onSuccess }: AuthPopupProps) {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: 0.3 }}
                     >
-                        <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-white transition-colors" />
-                        <Input
+                        <InputAuth
                             type="email"
                             placeholder="Email"
                             value={formData.email}
                             onChange={(e) => handleInputChange("email", e.target.value)}
-                            className="pl-12 h-12 bg-white/5 border-white/10 text-white placeholder:text-white/60 focus:border-white/30 focus:bg-white/10 transition-all duration-200 rounded-xl text-base"
+                            leftIcon={<Mail className="w-5 h-5" />}
+                            className="text-base"
                             required
                         />
                     </motion.div>
@@ -107,28 +107,21 @@ export default function AuthPopup({ onSuccess }: AuthPopupProps) {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: 0.4 }}
                     >
-                        <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-white transition-colors" />
-                        <Input
+                        <InputAuth
                             type={showPassword ? "text" : "password"}
                             placeholder="Mật khẩu"
                             value={formData.password}
                             onChange={(e) => handleInputChange("password", e.target.value)}
-                            className="pl-12 pr-12 h-12 bg-white/5 border-white/10 text-white placeholder:text-white/60 focus:border-white/30 focus:bg-white/10 transition-all duration-200 rounded-xl text-base"
+                            leftIcon={<Lock className="w-5 h-5" />}
+                            rightIcon={showPassword ? (
+                                <EyeOff className="w-5 h-5 text-white/70" />
+                            ) : (
+                                <Eye className="w-5 h-5 text-white/70" />
+                            )}
+                            onRightIconClick={() => setShowPassword(!showPassword)}
+                            className="text-base"
                             required
                         />
-                        <Button
-                            type="button"
-                            size="icon"
-                            variant="ghost"
-                            className="absolute right-2 top-1/2 transform -translate-y-1/2 w-9 h-9 btn-smooth hover:bg-white/10 rounded-lg"
-                            onClick={() => setShowPassword(!showPassword)}
-                        >
-                            {showPassword ? (
-                                <EyeOff className="w-5 h-5 text-muted-foreground" />
-                            ) : (
-                                <Eye className="w-5 h-5 text-muted-foreground" />
-                            )}
-                        </Button>
                     </motion.div>
 
                     {/* Submit Button */}

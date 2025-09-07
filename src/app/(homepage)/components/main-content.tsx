@@ -5,7 +5,6 @@ import { WidgetCard as Card, WidgetCardContent as CardContent } from "@/componen
 import { Play, Pause, MoreHorizontal, Heart, Plus } from "lucide-react"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
-import { extractDominantColorFromImage, rgbaString } from "@/lib/utils"
 import Link from "next/link"
 import { motion } from "framer-motion"
 
