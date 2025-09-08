@@ -1,6 +1,15 @@
 import { validationMessages } from "@/lib/messages/validation-messages";
 import z from "zod";
 
+export const registerCheckEmailSchema = z.object({
+  email: z
+    .string()
+    .nonempty({ message: validationMessages.email.required })
+    .email({ message: validationMessages.email.invalid }),
+});
+
+export type RegisterCheckEmailValues = z.infer<typeof registerCheckEmailSchema>;
+
 export const registerEmailSchema = z
   .object({
     email: z

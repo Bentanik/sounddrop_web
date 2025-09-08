@@ -1,11 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { SignupForm } from "@/app/signup/components/form";
-import { useRegisterForm } from "@/hooks/use-register-form";
+import { SignupForm } from "@/app/signup/components/signup-form";
 
 export function SignupMain() {
-    const { step } = useRegisterForm();
     return (
         <div className="min-h-screen text-white flex items-center justify-center px-4 bg-[#121212]">
             <div className="w-full max-w-md py-16">
@@ -16,18 +14,13 @@ export function SignupMain() {
 
                 <SignupForm />
 
-                {step === 1 && (
-                    <div className="mt-10 text-center text-white/70">
-                        Đã có tài khoản?
-                        {" "}
-                        <Link href="/login" className="text-white underline">
-                            Đăng nhập
-                        </Link>
-                    </div>
-                )}
+                <div className="mt-10 text-center text-white/70">
+                    Đã có tài khoản?{" "}
+                    <Link href="/login" className="text-white underline">
+                        Đăng nhập
+                    </Link>
+                </div>
             </div>
         </div>
     );
 }
-
-

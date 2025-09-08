@@ -80,6 +80,10 @@
 }
 
 @layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+
   * {
     @apply border-border outline-ring/50;
     html,
@@ -205,24 +209,17 @@
       border-collapse: collapse;
       border-spacing: 0;
     }
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-
-  /* Dark mode transitions */
-  * {
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff transparent;
     transition: background-color 0.2s ease, border-color 0.2s ease,
       color 0.2s ease;
   }
 
-  /* Smooth theme switching */
   html {
     transition: background-color 0.2s ease;
   }
 }
 
-/* Enhanced visual styling */
 @layer utilities {
   .btn-smooth {
     transition: background-color 150ms ease, color 150ms ease,
@@ -288,8 +285,8 @@
   }
 }
 
-/* Custom scrollbar (Firefox) */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #ffffff transparent;
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px rgba(255, 255, 255, 0.05) inset !important; /* giữ màu background */
+  -webkit-text-fill-color: white !important; /* giữ màu chữ */
+  transition: background-color 5000s ease-in-out 0s; /* tránh nhấp nháy */
 }
