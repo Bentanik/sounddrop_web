@@ -19,4 +19,7 @@ export const validationMessages = {
     max_length: "Xác nhận mật khẩu phải có tối đa 50 ký tự",
     not_match: "Mật khẩu xác nhận không khớp",
   },
+  otp: {
+    required: "Mã OTP không được để trống",
+  },
 };

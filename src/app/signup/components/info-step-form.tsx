@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InputAuth } from "@/components/ui/input-auth";
 import { User, Lock, Eye, EyeOff } from "lucide-react";
 import { useRegisterSendInfomation } from "@/app/signup/hooks/useRegisterSendInfomation";
+import { useRegisterStore } from "@/stores/zustand/register-store";
 
 interface InfoStepFormProps {
     onNext: () => void;
@@ -11,11 +12,18 @@ interface InfoStepFormProps {
 }
 
 export default function InfoStepForm({ onNext, onBack }: InfoStepFormProps) {
+    const email = useRegisterStore((state) => state.email);
     const { form, onSubmit, isPending } = useRegisterSendInfomation();
-    const { watch, setValue, formState } = form;
+    const { watch, setValue, formState, handleSubmit } = form;
 
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirm, setShowConfirm] = useState(false);
+
+    useEffect(() => {
+        if (email) {
+            setValue("email", email, { shouldValidate: true });
+        }
+    }, [email]);
 
     const displayName = watch("displayName");
     const password = watch("password");
@@ -30,10 +38,9 @@ export default function InfoStepForm({ onNext, onBack }: InfoStepFormProps) {
     return (
         <form
             className="space-y-4"
-            onSubmit={(e) => {
-                e.preventDefault();
-                onSubmit({ displayName, password, confirm_password: confirmPassword, email: "" }, onNext);
-            }}
+            onSubmit={handleSubmit((values) => {
+                onSubmit(values, onNext);
+            })}
         >
             {/* Display Name */}
             <div className="space-y-2.5">

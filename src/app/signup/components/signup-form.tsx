@@ -1,8 +1,9 @@
 "use client";
 
+import { useRegisterStore } from "@/stores/zustand/register-store";
 import EmailStepForm from "@/app/signup/components/email-step-form";
 import InfoStepForm from "@/app/signup/components/info-step-form";
-import { useRegisterStore } from "@/stores/zustand/register-store";
+import OtpStepForm from "@/app/signup/components/otp-step-form";
 
 export function SignupForm() {
     const step = useRegisterStore((state) => state.step);
@@ -21,7 +22,7 @@ export function SignupForm() {
             <div className="space-y-6">
                 {step === 1 && <EmailStepForm onNext={nextStep} />}
                 {step === 2 && <InfoStepForm onNext={nextStep} onBack={previousStep} />}
-                {step === 3 && <div>Step 3: OTP (sẽ làm sau)</div>}
+                {step === 3 && <OtpStepForm onNext={nextStep} onBack={previousStep} />}
             </div>
         </div>
     );

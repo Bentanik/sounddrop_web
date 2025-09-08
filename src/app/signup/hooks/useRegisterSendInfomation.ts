@@ -5,6 +5,7 @@ import {
   registerSendOtpSchema,
 } from "@/lib/validations/auth.schema";
 import { useRegisterSendOtpService } from "@/services/auth/services";
+import { useNotification } from "@/hooks/use-notification";
 
 export function useRegisterSendInfomation() {
   const form = useForm<RegisterSendOtpValues>({
@@ -18,6 +19,7 @@ export function useRegisterSendInfomation() {
     mode: "onChange",
   });
 
+  const { addNotification } = useNotification();
   const { mutate, isPending } = useRegisterSendOtpService();
 
   const onSubmit = async (data: RegisterSendOtpValues, onNext: () => void) => {
@@ -29,8 +31,14 @@ export function useRegisterSendInfomation() {
 
     mutate(request, {
       onSuccess: async (responseData: TResponse) => {
-        if (responseData.code === "AUTH_006") {
+        if (responseData.code === "AUTH_005") {
           onNext();
+          addNotification({
+            type: "success",
+            title: "Thành công",
+            message: responseData.message,
+            duration: 5000,
+          });
         }
       },
       onError: async (error: TErrorResponse) => {

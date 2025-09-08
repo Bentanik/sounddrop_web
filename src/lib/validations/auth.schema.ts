@@ -38,3 +38,13 @@ export const registerSendOtpSchema = z
   });
 
 export type RegisterSendOtpValues = z.infer<typeof registerSendOtpSchema>;
+
+export const registerSchema = z.object({
+  email: z
+    .string()
+    .nonempty({ message: validationMessages.email.required })
+    .email({ message: validationMessages.email.invalid }),
+  otp: z.string().nonempty({ message: validationMessages.otp.required }),
+});
+
+export type RegisterValues = z.infer<typeof registerSchema>;
