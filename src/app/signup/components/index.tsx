@@ -2,8 +2,11 @@
 
 import Link from "next/link";
 import { SignupForm } from "@/app/signup/components/signup-form";
+import { useRegisterStore } from "@/stores/zustand/register-store";
 
 export function SignupMain() {
+    const step = useRegisterStore((state) => state.step);
+
     return (
         <div className="min-h-screen text-white flex items-center justify-center px-4 bg-[#121212]">
             <div className="w-full max-w-md py-16">
@@ -14,12 +17,12 @@ export function SignupMain() {
 
                 <SignupForm />
 
-                <div className="mt-10 text-center text-white/70">
+                {step === 1 && <div className="mt-10 text-center text-white/70">
                     Đã có tài khoản?{" "}
                     <Link href="/login" className="text-white underline">
                         Đăng nhập
                     </Link>
-                </div>
+                </div>}
             </div>
         </div>
     );

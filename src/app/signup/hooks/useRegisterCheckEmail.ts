@@ -19,7 +19,7 @@ export function useRegisterCheckEmail() {
 
   const onSubmit = async (
     data: RegisterCheckEmailValues,
-    onNext: () => void
+    onNext: (email: string) => void
   ) => {
     const request: REQUEST.TRegisterCheckEmail = {
       email: data.email,
@@ -28,7 +28,7 @@ export function useRegisterCheckEmail() {
     mutate(request, {
       onSuccess: async (responseData: TResponse) => {
         if (responseData.code === "AUTH_006") {
-          onNext();
+          onNext(request.email);
         }
       },
       onError: async (error: TErrorResponse) => {

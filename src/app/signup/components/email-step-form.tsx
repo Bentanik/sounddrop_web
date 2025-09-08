@@ -1,18 +1,29 @@
 "use client";
 
-import { FC } from "react";
 import { InputAuth } from "@/components/ui/input-auth";
 import { Mail } from "lucide-react";
+import { useRegisterStore } from "@/stores/zustand/register-store";
 import { useRegisterCheckEmail } from "@/app/signup/hooks/useRegisterCheckEmail";
 
-export const EmailStepForm: FC<{ onNext: () => void }> = ({ onNext }) => {
+interface EmailStepFormProps {
+    onNext: () => void;
+}
+
+export default function EmailStepForm({ onNext }: EmailStepFormProps) {
     const { form, onSubmit, isPending } = useRegisterCheckEmail();
     const { register, handleSubmit, formState } = form;
+
+    const setEmail = useRegisterStore((state) => state.setEmail);
+
+    const handleNext = (email: string) => {
+        setEmail(email);
+        onNext();
+    };
 
     return (
         <form
             onSubmit={handleSubmit((values) => {
-                onSubmit(values, onNext);
+                onSubmit(values, handleNext);
             })}
             className="space-y-2.5"
         >

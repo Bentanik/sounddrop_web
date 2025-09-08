@@ -10,7 +10,7 @@ export const registerCheckEmailSchema = z.object({
 
 export type RegisterCheckEmailValues = z.infer<typeof registerCheckEmailSchema>;
 
-export const registerEmailSchema = z
+export const registerSendOtpSchema = z
   .object({
     email: z
       .string()
@@ -36,3 +36,5 @@ export const registerEmailSchema = z
     message: validationMessages.confirm_password.not_match,
     path: ["confirm_password"],
   });
+
+export type RegisterSendOtpValues = z.infer<typeof registerSendOtpSchema>;
