@@ -22,7 +22,7 @@ export function SignupForm() {
             <div className="space-y-6">
                 {step === 1 && <EmailStepForm onNext={nextStep} />}
                 {step === 2 && <InfoStepForm onNext={nextStep} onBack={previousStep} />}
-                {step === 3 && <OtpStepForm onNext={nextStep} onBack={previousStep} />}
+                {step === 3 && <OtpStepForm onBack={previousStep} />}
             </div>
         </div>
     );

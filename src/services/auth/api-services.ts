@@ -1,7 +1,7 @@
 import API_ENDPOINTS from "@/services/auth/api-path";
 import request from "@/services/interceptor";
 
-export const registerCheckEmail = async (
+export const registerCheckEmailAsync = async (
   params: REQUEST.TRegisterCheckEmail
 ) => {
   const response = await request<TResponse>(
@@ -13,7 +13,9 @@ export const registerCheckEmail = async (
   );
   return response.data;
 };
-export const registerSendOtp = async (payload: REQUEST.TRegisterSendOtp) => {
+export const registerSendOtpAsync = async (
+  payload: REQUEST.TRegisterSendOtp
+) => {
   const response = await request<TResponse>(API_ENDPOINTS.REGISTER_SEND_OTP, {
     method: "POST",
     data: payload,
@@ -21,8 +23,16 @@ export const registerSendOtp = async (payload: REQUEST.TRegisterSendOtp) => {
   return response.data;
 };
 
-export const register = async (payload: REQUEST.TRegister) => {
+export const registerAsync = async (payload: REQUEST.TRegister) => {
   const response = await request<TResponse>(API_ENDPOINTS.REGISTER, {
+    method: "POST",
+    data: payload,
+  });
+  return response.data;
+};
+
+export const loginAsync = async (payload: REQUEST.TLogin) => {
+  const response = await request<TResponse>(API_ENDPOINTS.LOGIN, {
     method: "POST",
     data: payload,
   });

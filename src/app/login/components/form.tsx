@@ -2,64 +2,64 @@
 
 import { useState } from "react";
 import { InputAuth } from "@/components/ui/input-auth";
-import { Mail, Eye, EyeOff, Lock } from "lucide-react";
-import { motion } from "framer-motion";
-import { useLoginForm } from "@/hooks/use-login-form";
+import { User, Lock, Eye, EyeOff } from "lucide-react";
+import { useLogin } from "@/hooks/use-login";
 
-export function LoginForm() {
-    const { email, setEmail, password, setPassword, isLoading, error, emailValid, passwordValid, canSubmit, handleSubmit } = useLoginForm();
+export default function LoginForm() {
+    const { form, onSubmit, isPending } = useLogin();
+    const { watch, setValue, formState, handleSubmit } = form;
+
     const [showPassword, setShowPassword] = useState(false);
 
+    const email = watch("email");
+    const password = watch("password");
+
     return (
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form
+            className="space-y-4"
+            onSubmit={handleSubmit((values) => {
+                onSubmit(values);
+            })}
+        >
+            {/* Email */}
             <div className="space-y-2.5">
-                <label className="text-base font-medium block">Địa chỉ email</label>
+                <label className="text-base font-medium block">Email</label>
                 <InputAuth
-                    type="email"
-                    placeholder="ten@domain.com"
+                    type="text"
+                    placeholder="Email của bạn"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    leftIcon={<Mail className="w-5 h-5" />}
+                    onChange={(e) => setValue("email", e.target.value, { shouldValidate: true })}
+                    leftIcon={<User className="w-5 h-5" />}
                 />
-                {!emailValid && email.length > 0 && (
-                    <p className="text-xs text-red-400">Email không hợp lệ</p>
+                {formState.errors.email && (
+                    <p className="text-xs text-red-400">{formState.errors.email.message}</p>
                 )}
             </div>
 
+            {/* Password */}
             <div className="space-y-2.5">
                 <label className="text-base font-medium block">Mật khẩu</label>
                 <InputAuth
                     type={showPassword ? "text" : "password"}
-                    placeholder="Mật khẩu của bạn"
+                    placeholder="Mật khẩu tối thiểu 8 ký tự"
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setValue("password", e.target.value, { shouldValidate: true })}
                     leftIcon={<Lock className="w-5 h-5" />}
-                    rightIcon={showPassword ? (
-                        <EyeOff className="w-5 h-5 text-white/70" />
-                    ) : (
-                        <Eye className="w-5 h-5 text-white/70" />
-                    )}
+                    rightIcon={showPassword ? <EyeOff className="w-5 h-5 text-white/70" /> : <Eye className="w-5 h-5 text-white/70" />}
                     onRightIconClick={() => setShowPassword(!showPassword)}
                 />
-                {!passwordValid && password.length > 0 && (
-                    <p className="text-xs text-red-400">Mật khẩu phải từ 6 ký tự</p>
+                {formState.errors.password && (
+                    <p className="text-xs text-red-400">{formState.errors.password.message}</p>
                 )}
             </div>
 
-            {error && (
-                <div className="text-center text-red-400 text-sm">
-                    {error}
-                </div>
-            )}
-
-            <motion.button
-                whileTap={{ scale: 0.98 }}
+            <button
                 type="submit"
-                disabled={!canSubmit}
-                className="w-full rounded-md px-3 py-2 text-sm font-medium bg-sidebar-primary text-sidebar-primary-foreground hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-lg"
+                disabled={isPending}
+                className="w-full rounded-md px-3 py-2 text-sm font-medium bg-sidebar-primary text-sidebar-primary-foreground hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-                {isLoading ? "Đang đăng nhập..." : "Đăng nhập"}
-            </motion.button>
+                {isPending ? "Đang kiểm tra..." : "Đăng nhập"}
+            </button>
         </form>
     );
-}
+};

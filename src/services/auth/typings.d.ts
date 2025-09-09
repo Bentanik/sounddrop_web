@@ -13,6 +13,11 @@ declare namespace REQUEST {
     email: string;
     otp: string;
   };
+
+  type TLogin = {
+    email: string;
+    password: string;
+  };
 }
 
 declare namespace API {}

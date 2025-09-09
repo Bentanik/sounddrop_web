@@ -1,7 +1,8 @@
 import {
-  registerCheckEmail,
-  registerSendOtp,
-  register,
+  registerCheckEmailAsync,
+  registerSendOtpAsync,
+  registerAsync,
+  loginAsync,
 } from "@/services/auth/api-services";
 
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
@@ -14,7 +15,7 @@ export const useRegisterCheckEmailService = (
   >
 ) => {
   return useMutation<TResponse, TErrorResponse, REQUEST.TRegisterCheckEmail>({
-    mutationFn: registerCheckEmail,
+    mutationFn: registerCheckEmailAsync,
     ...options,
   });
 };
@@ -27,7 +28,7 @@ export const useRegisterSendOtpService = (
   >
 ) => {
   return useMutation<TResponse, TErrorResponse, REQUEST.TRegisterSendOtp>({
-    mutationFn: registerSendOtp,
+    mutationFn: registerSendOtpAsync,
     ...options,
   });
 };
@@ -36,7 +37,16 @@ export const useRegisterService = (
   options?: UseMutationOptions<TResponse, TErrorResponse, REQUEST.TRegister>
 ) => {
   return useMutation<TResponse, TErrorResponse, REQUEST.TRegister>({
-    mutationFn: register,
+    mutationFn: registerAsync,
+    ...options,
+  });
+};
+
+export const useLoginService = (
+  options?: UseMutationOptions<TResponse, TErrorResponse, REQUEST.TLogin>
+) => {
+  return useMutation<TResponse, TErrorResponse, REQUEST.TLogin>({
+    mutationFn: loginAsync,
     ...options,
   });
 };

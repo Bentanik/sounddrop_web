@@ -3,7 +3,7 @@
 import { InputAuth } from "@/components/ui/input-auth";
 import { Mail } from "lucide-react";
 import { useRegisterStore } from "@/stores/zustand/register-store";
-import { useRegisterCheckEmail } from "@/app/signup/hooks/useRegisterCheckEmail";
+import { useRegisterCheckEmail } from "@/app/signup/hooks/use-register-check-email";
 
 interface EmailStepFormProps {
     onNext: () => void;

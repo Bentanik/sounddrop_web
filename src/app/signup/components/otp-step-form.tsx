@@ -3,15 +3,14 @@
 import { InputAuth } from "@/components/ui/input-auth";
 import { ShieldCheck } from "lucide-react";
 import { useRegisterStore } from "@/stores/zustand/register-store";
-import { useRegister } from "@/app/signup/hooks/useRegister";
+import { useRegister } from "@/app/signup/hooks/use-register";
 import { useEffect } from "react";
 
 interface OtpStepFormProps {
-    onNext: () => void;
-    onBack?: () => void;
+    onBack: () => void;
 }
 
-export default function OtpStepForm({ onNext, onBack }: OtpStepFormProps) {
+export default function OtpStepForm({ onBack }: OtpStepFormProps) {
     const email = useRegisterStore((state) => state.email);
     const { form, onSubmit, isPending } = useRegister();
     const { register, handleSubmit, watch, formState, setValue } = form;
@@ -28,7 +27,7 @@ export default function OtpStepForm({ onNext, onBack }: OtpStepFormProps) {
     return (
         <form
             className="space-y-4"
-            onSubmit={handleSubmit((values) => onSubmit(values, () => onNext()))}
+            onSubmit={handleSubmit((values) => onSubmit(values))}
         >
             <div className="space-y-2.5">
                 <label className="text-base font-medium block">
