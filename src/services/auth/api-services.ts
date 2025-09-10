@@ -32,9 +32,12 @@ export const registerAsync = async (payload: REQUEST.TRegister) => {
 };
 
 export const loginAsync = async (payload: REQUEST.TLogin) => {
-  const response = await request<TResponse>(API_ENDPOINTS.LOGIN, {
-    method: "POST",
-    data: payload,
-  });
+  const response = await request<TResponse<API.TLoginResponse>>(
+    API_ENDPOINTS.LOGIN,
+    {
+      method: "POST",
+      data: payload,
+    }
+  );
   return response.data;
 };

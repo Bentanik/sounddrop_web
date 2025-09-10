@@ -20,4 +20,21 @@ declare namespace REQUEST {
   };
 }
 
-declare namespace API {}
+declare namespace API {
+  type TToken = {
+    accessToken: string;
+    refreshToken: string;
+    expiresAt: string;
+    tokenType: string;
+  };
+
+  type TUser = {
+    id: string;
+    fullName: string;
+  };
+
+  type TLoginResponse = {
+    token: TToken;
+    user: TUser;
+  };
+}

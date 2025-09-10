@@ -43,9 +43,17 @@ export const useRegisterService = (
 };
 
 export const useLoginService = (
-  options?: UseMutationOptions<TResponse, TErrorResponse, REQUEST.TLogin>
+  options?: UseMutationOptions<
+    TResponse<API.TLoginResponse>,
+    TErrorResponse,
+    REQUEST.TLogin
+  >
 ) => {
-  return useMutation<TResponse, TErrorResponse, REQUEST.TLogin>({
+  return useMutation<
+    TResponse<API.TLoginResponse>,
+    TErrorResponse,
+    REQUEST.TLogin
+  >({
     mutationFn: loginAsync,
     ...options,
   });

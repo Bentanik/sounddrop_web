@@ -8,7 +8,7 @@ export function SignupMain() {
     const step = useRegisterStore((state) => state.step);
 
     return (
-        <div className="min-h-screen text-white flex items-center justify-center px-4 bg-[#121212]">
+        <div className="min-h-screen text-white flex items-center justify-center px-4 bg-[#2b2a2a]">
             <div className="w-full max-w-md py-16">
                 <div className="flex flex-col items-center text-center">
                     <h1 className="text-5xl font-extrabold tracking-tight mb-2">Đăng ký để</h1>
