@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { SignupForm } from "@/app/signup/components/signup-form";
+import { SignupForm } from "@/app/(auth)/signup/components/signup-form";
 import { useRegisterStore } from "@/stores/zustand/register-store";
 
 export function SignupMain() {

@@ -18,6 +18,10 @@ declare namespace REQUEST {
     email: string;
     password: string;
   };
+
+  type TRefreshToken = {
+    refreshToken: string;
+  };
 }
 
 declare namespace API {

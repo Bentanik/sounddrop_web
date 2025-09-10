@@ -41,3 +41,13 @@ export const loginAsync = async (payload: REQUEST.TLogin) => {
   );
   return response.data;
 };
+
+export const refreshTokenAsync = async (payload: REQUEST.TRefreshToken) => {
+  const response = await request<TResponse<API.TToken>>(
+    API_ENDPOINTS.REFRESH_TOKEN,
+    {
+      method: "POST",
+    }
+  );
+  return response.data;
+};

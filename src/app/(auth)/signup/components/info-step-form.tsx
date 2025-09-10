@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { InputAuth } from "@/components/ui/input-auth";
 import { User, Lock, Eye, EyeOff } from "lucide-react";
-import { useRegisterSendInfomation } from "@/app/signup/hooks/use-register-send-infomation";
+import { useRegisterSendInfomation } from "@/app/(auth)/signup/hooks/use-register-send-infomation";
 import { useRegisterStore } from "@/stores/zustand/register-store";
 
 interface InfoStepFormProps {

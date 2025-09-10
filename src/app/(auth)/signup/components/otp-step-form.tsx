@@ -3,7 +3,7 @@
 import { InputAuth } from "@/components/ui/input-auth";
 import { ShieldCheck } from "lucide-react";
 import { useRegisterStore } from "@/stores/zustand/register-store";
-import { useRegister } from "@/app/signup/hooks/use-register";
+import { useRegister } from "@/app/(auth)/signup/hooks/use-register";
 import { useEffect } from "react";
 
 interface OtpStepFormProps {

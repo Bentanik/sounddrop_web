@@ -1,9 +1,9 @@
 "use client";
 
 import { useRegisterStore } from "@/stores/zustand/register-store";
-import EmailStepForm from "@/app/signup/components/email-step-form";
-import InfoStepForm from "@/app/signup/components/info-step-form";
-import OtpStepForm from "@/app/signup/components/otp-step-form";
+import EmailStepForm from "@/app/(auth)/signup/components/email-step-form";
+import InfoStepForm from "@/app/(auth)/signup/components/info-step-form";
+import OtpStepForm from "@/app/(auth)/signup/components/otp-step-form";
 
 export function SignupForm() {
     const step = useRegisterStore((state) => state.step);
